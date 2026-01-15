@@ -1,3 +1,6 @@
+/* ========================================
+   RESET DO NAVEGADOR
+======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -8,6 +11,9 @@
     outline: none;
 }
 
+/* ========================================
+   VARIÁVEIS
+======================================== */
 :root {
     /* Paleta de Cores - Purple */
     --purple-50: #f4eaff;
@@ -62,6 +68,9 @@
     --transition-default: all 0.3s ease;
 }
 
+/* ========================================
+   CONFIGURAÇÕES BÁSICAS
+======================================== */
 html {
     scroll-behavior: smooth;
 }
@@ -79,6 +88,9 @@ main {
     flex: 1;
 }
 
+/* ========================================
+   SEÇÕES - BASE COMUM
+======================================== */
 .section-container {
     max-width: 70rem;
     margin: 0 auto;
@@ -86,11 +98,17 @@ main {
     scroll-margin-top: 6rem;
 }
 
+/* ========================================
+   BOTÕES
+======================================== */
+
+/* Container para botões*/
 .buttons-container {
     display: flex;
     gap: var(--spacing-sm);
 }
 
+/* Base comum para todos os botões*/
 .botao,
 .botao-outline {
     display: inline-block;
@@ -142,6 +160,9 @@ main {
     font-size: var(--text-sm);
 }
 
+/* ========================================
+   SEÇÃO HEADER - CABEÇALHO E MENU
+======================================== */
 header {
     position: sticky;
     top: 0;
@@ -188,6 +209,9 @@ header a:hover {
     padding: var(--spacing-xs);
 }
 
+/* ========================================
+   SEÇÃO HERO
+======================================== */
 .hero-container {
     display: flex;
     align-items: center;
@@ -248,6 +272,9 @@ header a:hover {
     animation: float 3s ease-in-out infinite;
 }
 
+/* ========================================
+   SEÇÃO ABOUT
+======================================== */
 .about-container {
     display: flex;
     align-items: center;
@@ -319,6 +346,9 @@ header a:hover {
     color: var(--gray-400);
 }
 
+/* ========================================
+   SEÇÃO PROJECTS
+======================================== */
 .projects-container {
     scroll-margin-top: 3rem;
     margin: var(--spacing-2xl) auto;
@@ -332,6 +362,7 @@ header a:hover {
     overflow: hidden;
 }
 
+/* Card de projetos */
 .project-card {
     display: flex;
     flex-direction: column;
@@ -388,6 +419,7 @@ header a:hover {
     color: var(--gray-400);
 }
 
+/* Tags de Tecnologias */
 .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -403,6 +435,7 @@ header a:hover {
     color: var(--purple-800);
 }
 
+/* Container - Botões do Card */
 .project-buttons {
     display: flex;
     justify-content: center;
@@ -411,6 +444,9 @@ header a:hover {
     margin-top: var(--spacing-sm);
 }
 
+/* ========================================
+   SEÇÃO PROJECTS - CARROSSEL (SWIPER)
+======================================== */
 .swiper-wrapper {
     align-items: stretch;
 }
@@ -452,12 +488,16 @@ header a:hover {
     background-color: var(--purple-500);
 }
 
+/* ========================================
+   SEÇÃO CONTACT
+======================================== */
 .contact-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-2xl);
 }
 
+/* Redes Sociais */
 .contact-info h2 {
     margin-bottom: var(--spacing-md);
 }
@@ -537,6 +577,9 @@ form span {
     color: var(--error);
 }
 
+/* ========================================
+   SEÇÃO FOOTER - RODAPÉ
+======================================== */
 footer {
     padding: 2.5rem;
     background: linear-gradient(to right, var(--purple-500), var(--purple-800));
@@ -545,6 +588,9 @@ footer {
     color: var(--white);
 }
 
+/* ========================================
+   PÁGINA SUCCESS
+======================================== */
 .success-container {
     display: flex;
     flex-direction: column;
@@ -599,7 +645,7 @@ footer {
 }
 
 /* ========================================
-   RESPONSIVIDADE - TABLETS
+   RESPONSIVIDADE - TABLETS (até 1024px)
 ======================================== */
 
 @media screen and (max-width: 1024px) {
@@ -791,7 +837,7 @@ footer {
 }
 
 /* ========================================
-   RESPONSIVIDADE - MOBILE
+   RESPONSIVIDADE - MOBILE (até 480px)
 ======================================== */
 
 @media screen and (max-width: 480px) {

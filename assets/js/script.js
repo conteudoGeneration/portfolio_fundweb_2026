@@ -1,3 +1,7 @@
+// ============================================
+// SELEÇÃO DE ELEMENTOS DA PÁGINA
+// ============================================
+
 // Seletor da Seção About (section)
 const about = document.querySelector('#about');
 
@@ -10,11 +14,13 @@ const formulario = document.querySelector('#formulario');
 // Regex de validação do e-mail
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-// Função para buscar os dados do Perfil do GitHub
+// ============================================
+// BUSCAR DADOS DO PERFIL DO GITHUB
+// ============================================
 async function getAboutGithub() {
     try {
 
-        // Não esuqeça de trocar conteudoGeneration pelo seu usuário do GitHub
+        // Não esqueça de trocar conteudoGeneration pelo seu usuário do GitHub
         const resposta = await fetch('https://api.github.com/users/conteudoGeneration');
         const perfil = await resposta.json();
 
@@ -68,11 +74,13 @@ async function getAboutGithub() {
 // Executar a função ao carregar o script
 getAboutGithub();
 
-// Função para buscar os dados dos Projetos (respositórios públicos) do GitHub
+// ============================================
+// BUSCAR REPOSITÓRIOS DO GITHUB
+// ============================================
 async function getProjectsGithub() {
     try {
 
-        // Não esuqeça de trocar conteudoGeneration pelo seu usuário do GitHub
+        // Não esqueça de trocar conteudoGeneration pelo seu usuário do GitHub
         const resposta = await fetch('https://api.github.com/users/conteudoGeneration/repos?sort=updated&per_page=6');
         const repositorios = await resposta.json();
 
@@ -157,7 +165,9 @@ async function getProjectsGithub() {
 // Executar a função ao carregar o script
 getProjectsGithub()
 
-// Função de inicialização do Carrossel - Swiper
+// ============================================
+// CARROSSEL - SWIPER
+// ============================================
 function iniciarSwiper() {
     new Swiper('.projects-swiper', {
         slidesPerView: 1,
@@ -211,7 +221,9 @@ function iniciarSwiper() {
     });
 }
 
-// Função de Validação do Formulário
+// ============================================
+// VALIDAÇÃO DE FORMULÁRIO
+// ============================================
 formulario.addEventListener('submit', function(event) {
     event.preventDefault();
 
