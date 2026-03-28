@@ -67,7 +67,7 @@ async function getAboutGithub() {
             </article>
         `;
     } catch (error) {
-        console.error('Erro ao buscar dados do GitHub:', error);
+        console.error('Erro ao buscar dados do usuário:', error);
     }
 }
 
@@ -77,6 +77,7 @@ getAboutGithub();
 // ============================================
 // BUSCAR REPOSITÓRIOS DO GITHUB
 // ============================================
+
 async function getProjectsGithub() {
     try {
 
@@ -86,40 +87,60 @@ async function getProjectsGithub() {
 
         swiperWrapper.innerHTML = '';
 
-        // Cores e ícones das linguagens
+        // Objeto contendo a lista de logos das linguagens
         const linguagens = {
-            'JavaScript': { icone: 'javascript' },
-            'TypeScript': { icone: 'typescript' },
-            'Python': { icone: 'python' },
-            'Java': { icone: 'java' },
-            'HTML': { icone: 'html' },
-            'CSS': { icone: 'css' },
-            'PHP': { icone: 'php' },
-            'C#': { icone: 'csharp' },
-            'Go': { icone: 'go' },
-            'Kotlin': { icone: 'kotlin' },
-            'Swift': { icone: 'swift' },
-            'GitHub': { icone: 'github' },
-        };
+			'JavaScript': 'javascript',
+			'TypeScript': 'typescript',
+			'Python': 'python',
+			'Java': 'java',
+			'HTML': 'html',
+			'CSS': 'css',
+			'PHP': 'php',
+			'C#': 'csharp',
+			'Go': 'go',
+			'Kotlin': 'kotlin',
+			'Swift': 'swift',
+			'C': 'c',
+			'C++': 'c_plus',
+			'GitHub': 'github',
+		}
 
         repositorios.forEach(repositorio => {
-            const linguagem = repositorio.language || 'GitHub';
-            const config = linguagens[linguagem] || linguagens['GitHub'];
-            const urlIcone = `./assets/icons/languages/${config.icone}.svg`;
+      
+            // Seleciona o nome da Linguagem padrão do repositório
+            const linguagem = repositorio.language || 'GitHub'
+                    
+            // Seleciona o logo da Linguagem padrão do repositório
+            const logo = linguagens[linguagem] ?? linguagens['GitHub']
+                    
+            // Constrói a URL que aponta para o logo da Linguagem padrão do repositório
+            const urlLogo = `./assets/icons/languages/${logo}.svg`
             
+            // Formata o nome do reposiório
             const nomeFormatado = repositorio.name
                 .replace(/[-_]/g, ' ')
                 .replace(/[^a-zA-Z0-9\s]/g, '')
                 .toUpperCase();
 
-            const descricao = repositorio.description 
-                ? (repositorio.description.length > 100 ? repositorio.description.substring(0, 97) + '...' : repositorio.description)
-                : 'Projeto desenvolvido no GitHub';
+            // Função para truncar texto da descrição
+     		const truncar = (texto, limite) => texto.length > limite
+                ? texto.substring(0, limite) + '...'
+                : texto
+
+            // Define a descrição do Repositório
+            const descricao = repositorio.description
+                ? truncar(repositorio.description, 100)
+                : 'Projeto desenvolvido no GitHub'
 
             // tags
             const tags = repositorio.topics?.length > 0
                 ? repositorio.topics.slice(0, 3).map(topic => `<span class="tag">${topic}</span>`).join('')
                 : `<span class="tag">${linguagem}</span>`;
+
+            // Cria o Botão Deploy
+            const botaoDeploy = repositorio.homepage
+                ? `<a href="${repositorio.homepage}" target="_blank" class="botao-outline botao-sm">Deploy</a>`
+                : ''
 
             // Botões de ação
             const botoesAcao = `
@@ -127,11 +148,7 @@ async function getProjectsGithub() {
                     <a href="${repositorio.html_url}" target="_blank" class="botao botao-sm">
                         GitHub
                     </a>
-                    ${repositorio.homepage ? `
-                        <a href="${repositorio.homepage}" target="_blank" class="botao-outline botao-sm">
-                            Deploy
-                        </a>
-                    ` : ''}
+                    ${botaoDeploy}
                 </div>
             `;
 
@@ -139,7 +156,7 @@ async function getProjectsGithub() {
                 <div class="swiper-slide">
                     <article class="project-card">
                         <div class="project-image">
-                            <img src="${urlIcone}" 
+                            <img src="${urlLogo}" 
                                 alt="Ícone ${linguagem}"
                                 onerror="this.onerror=null; this.src='./assets/icons/languages/github.svg';">
                         </div>
@@ -155,10 +172,11 @@ async function getProjectsGithub() {
             `;
         });
 
+        // Inicia o Carrossel
         iniciarSwiper();
 
     } catch (error) {
-        console.error('Erro ao buscar repositoriositórios:', error);
+        console.error('Erro ao buscar repositórios:', error);
     }
 }
 
